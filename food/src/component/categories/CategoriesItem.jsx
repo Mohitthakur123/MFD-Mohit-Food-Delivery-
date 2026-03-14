@@ -48,7 +48,7 @@ const CategoriesItem = () => {
                 <div className="box-3 float-container">
                   <div className="category-thumb text-center">
                     <img
-                      src={`https://mfd-mohit-food-delivery.onrender.com/categories/${item.thumb}`}
+                      src={`https://mfd-mohit-food-delivery.onrender.com/uploads/categories/${item.thumb}`}
                       alt={item.title}
                       className="img-responsive img-curve"
                     />
