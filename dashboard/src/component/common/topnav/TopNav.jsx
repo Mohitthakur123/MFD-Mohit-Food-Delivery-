@@ -100,7 +100,7 @@ const TopNav = () => {
             <div className="topnav-profile-img">
               <Link to="profile" title="Profile">
                 {!admin.thumb ? (
-                  <img src={"/default/avatar.png"} alt={admin.thumb} />
+                  <img src="https://mfd-mohit-food-delivery.onrender.com/default/avatar.png" alt={admin.thumb} />
                 ) : (
                   <img src={"/users/" + admin.thumb} alt={admin.thumb} />
                 )}

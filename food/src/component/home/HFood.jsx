@@ -57,7 +57,10 @@ const HFood = () => {
                 <div className="img">
                   <Link to={"/foods/" + item._id}>
                     <img
-                      src={"http://localhost:5000/uploads/foods/" + item.thumb}
+                      src={
+                        "https://mfd-mohit-food-delivery.onrender.com/uploads/foods/" +
+                        item.thumb
+                      }
                       alt={item.title}
                       className="img-responsive img-curve"
                     />

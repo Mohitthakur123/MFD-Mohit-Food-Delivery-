@@ -22,7 +22,7 @@ const Sidebar = () => {
               title="Go Home Page"
               rel="noreferrer"
             >
-              <img src={"/default/logo.png"} alt="Logo" />
+              <img src="https://mfd-mohit-food-delivery.onrender.com/default/logo.png" alt="Logo" />
             </a>
           </div>
         </div>

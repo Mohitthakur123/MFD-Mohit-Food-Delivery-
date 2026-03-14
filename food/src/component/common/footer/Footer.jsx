@@ -41,7 +41,7 @@ const Footer = () => {
       <footer>
         <div className="container padding grid-4">
           <div className="box footer-logo">
-            <img src={"/default/logo.png"} alt="Logo" />
+            <img src="https://mfd-mohit-food-delivery.onrender.com/default/avatar.png" />
             <p>
               A small river named Duden flows by their place and supplies it
               with the necessary regelialia.

@@ -101,7 +101,7 @@ cd server
 npm install
 npm start
 Server runs on:
-http://localhost:5000
+https://mfd-mohit-food-delivery.onrender.com
 
 
 ---
