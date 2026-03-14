@@ -73,7 +73,7 @@ const SignUp = () => {
         <div className="container">
           <div className="login-form text-center">
             <form onSubmit={submitHandler}>
-              <img src={"/default/avatar.png"} alt="" />
+              <img src={"https://mfd-mohit-food-delivery.onrender.com/default/avatar.png"} alt="" />
               <input
                 type="text"
                 name="name"
