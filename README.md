@@ -69,22 +69,19 @@ Tools:
 # 📷 Screenshots
 
 ## Home Page
-![Home Page](screenshots/home.png)
-
-## Food Menu
-![Food Menu](screenshots/food-menu.png)
+![Home Page](screenshots/Home.png)
 
 ## Food Details
-![Food Details](screenshots/food-details.png)
+![Food Details](screenshots/Food_Details.png)
 
 ## Admin Login
-![Admin Login](screenshots/admin-login.png)
+![Admin Login](screenshots/Admin_Login.png)
 
 ## Admin Dashboard
-![Admin Dashboard](screenshots/admin-dashboard.png)
+![Admin Dashboard](screenshots/Admin_Dashboard.png)
 
 ## Add Food (Admin Panel)
-![Add Food](screenshots/add-food.png)
+![Add Food](screenshots/Add_Food.png)
 
 ---
 
