@@ -316,7 +316,7 @@ function Order() {
                 />{" "}
                 <img
                   className="payment-logo"
-                  src={"/default/nagad.png"}
+                  src={"https://mfd-mohit-food-delivery.onrender.com/default/nagad.png"}
                   alt=""
                 />
                 <br />
