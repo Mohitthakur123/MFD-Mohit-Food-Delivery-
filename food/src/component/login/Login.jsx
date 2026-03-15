@@ -69,7 +69,7 @@ const Login = () => {
             ) : (
               <div>
                 <form onSubmit={submitHandler}>
-                  <img src={"https://mfd-mohit-food-delivery.onrender.com/default/logo.png"} alt="" />
+                  <img src={"https://mfd-mohit-food-delivery.onrender.com/default/avatar.png"} alt="" />
                   <input
                     type="email"
                     name="email"
