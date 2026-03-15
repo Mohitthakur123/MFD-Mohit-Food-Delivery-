@@ -182,7 +182,7 @@ const Header = () => {
                            <img src={"https://mfd-mohit-food-delivery.onrender.com/default/avatar.png"} alt="avatar" />
                           ) : (
                             <img
-                              src={"/customers/" + customer.thumb}
+                              src={"https://mfd-mohit-food-delivery.onrender.com/default/avatar.png" + customer.thumb}
                               alt="avatar"
                             />
                           )}
@@ -230,10 +230,10 @@ const Header = () => {
                       <div className="img">
                         <Link>
                           {!deliveryMan.thumb ? (
-                           <img src={"https://mfd-mohit-food-delivery.onrender.com/default/avatar.png"} alt="avatar" />
+                           <img src={"../default/avatar.png"} alt="avatar" />
                           ) : (
                             <img
-                              src={"/delivery-men/" + deliveryMan.thumb}
+                              src={"../default/avatar.png" + deliveryMan.thumb}
                               alt="avatar"
                             />
                           )}
@@ -337,10 +337,10 @@ const Header = () => {
                         <div className="img">
                           <Link>
                             {!customer.thumb ? (
-                             <img src={"https://mfd-mohit-food-delivery.onrender.com/default/avatar.png"} alt="avatar" />
+                             <img src={"../default/avatar.png"} alt="avatar" />
                             ) : (
                               <img
-                                src={"/customers/" + customer.thumb}
+                                src={"../default/avatar.png" + customer.thumb}
                                 alt="avatar"
                               />
                             )}
@@ -388,7 +388,7 @@ const Header = () => {
                         <div className="img">
                           <Link>
                             {!deliveryMan.thumb ? (
-                              <img src={"https://mfd-mohit-food-delivery.onrender.com/default/avatar.png"} alt="avatar" />
+                              <img src={"../default/avatar.png"} alt="avatar" />
                             ) : (
                               <img
                                 src={"/delivery-men/" + deliveryMan.thumb}
