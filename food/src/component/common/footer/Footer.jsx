@@ -77,7 +77,7 @@ const Footer = () => {
                 <Link to="/contact">Contact</Link>
               </li>
               <li>
-                <a href="http://localhost:2000/">Admin</a>
+                <a href="https://mfd-mohit-food-delivery-admin.onrender.com">Admin</a>
               </li>
               <li>
                 <Link to="/delivery-man">Delivery Man</Link>
