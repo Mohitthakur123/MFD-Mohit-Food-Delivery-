@@ -1,4 +1,4 @@
-import axios from "../../axios";
+import axios from "axios";
 import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";

@@ -4,7 +4,7 @@ import ShoppingCart from "./ShoppingCart";
 import { useCart } from "react-use-cart";
 import Cookies from "js-cookie";
 import { useRef, useState, useEffect } from "react";
-import axios from "../../axios";
+import axios from "axios";
 
 const BASE_URL = "https://mfd-mohit-food-delivery-1.onrender.com";
 

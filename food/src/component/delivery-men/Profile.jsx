@@ -1,4 +1,4 @@
-import axios from "../../axios";
+import axios from "axios";
 import Cookies from "js-cookie";
 import moment from "moment";
 import React, { useEffect, useState } from "react";

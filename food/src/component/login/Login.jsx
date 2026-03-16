@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import PageHeader from "../common/header/title/PageHeader";
 import "./login.css";
 import Swal from "sweetalert2";
-import axios from "../../axios";
+import axios from "axios";
 import Cookies from "js-cookie";
 
 const Login = () => {

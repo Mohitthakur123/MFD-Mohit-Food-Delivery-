@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PageHeader from "../common/header/title/PageHeader";
 import { useParams } from "react-router-dom";
-import axios from "../../axios";
+import axios from "axios";
 import moment from "moment";
 
 const SingleBlog = () => {

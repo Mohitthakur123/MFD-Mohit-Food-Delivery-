@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "../../axios";
+import axios from "axios";
 import Swal from "sweetalert2";
 import PageHeader from "../common/header/title/PageHeader";
 import "./contact.css";

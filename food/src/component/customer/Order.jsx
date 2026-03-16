@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import PageHeader from "../common/header/title/PageHeader";
 import "./customer.css";
-import axios from "../../axios";
+import axios from "axios";
 import moment from "moment";
 import Swal from "sweetalert2";
 import Profile from "./Profile";

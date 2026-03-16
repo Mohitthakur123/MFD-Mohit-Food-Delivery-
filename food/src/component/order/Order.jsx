@@ -5,7 +5,7 @@ import "./order.css";
 import { useCart } from "react-use-cart";
 import Swal from "sweetalert2";
 import Cookies from "js-cookie";
-import axios from "../../axios";
+import axios from "axios";
 import { v4 as uuid } from "uuid";
 
 function Order() {

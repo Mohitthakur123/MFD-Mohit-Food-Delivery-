@@ -2,7 +2,6 @@ import React from "react";
 import Router from "../../routers/Router";
 import Sidebar from "../sidebar/Sidebar";
 import TopNav from "../topnav/TopNav";
-
 const LayOut = () => {
   return (
     <div>

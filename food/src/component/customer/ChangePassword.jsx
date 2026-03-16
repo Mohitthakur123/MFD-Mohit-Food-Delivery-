@@ -4,7 +4,7 @@ import PageHeader from "../common/header/title/PageHeader";
 import Cookies from "js-cookie";
 import { useState } from "react";
 import Swal from "sweetalert2";
-import axios from "../../axios";
+import axios from "axios";
 import { useEffect } from "react";
 import Profile from "./Profile";
 

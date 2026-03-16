@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import PageHeader from "../common/header/title/PageHeader";
 import "../customer/customer.css";
-import axios from "../../axios";
+import axios from "axios";
 import moment from "moment";
 import Profile from "./Profile";
 import Rating from "../common/rating/Rating";

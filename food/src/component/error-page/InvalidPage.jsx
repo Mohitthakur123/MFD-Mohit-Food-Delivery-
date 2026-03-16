@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PageHeader from "../common/header/title/PageHeader";
-import axios from "../../axios";
+import axios from "axios";
 const InvalidPage = () => {
   return (
     <div>

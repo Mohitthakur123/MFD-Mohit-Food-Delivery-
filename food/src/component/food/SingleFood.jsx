@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import PageHeader from "../common/header/title/PageHeader";
 import "./food.css";
 import { Link, useParams } from "react-router-dom";
-import axios from "../../axios";
+import axios from "axios";
 import { useCart } from "react-use-cart";
 import Swal from "sweetalert2";
 import Rating from "../common/rating/Rating";

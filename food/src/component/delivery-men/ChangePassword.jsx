@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../customer/customer.css";
 import PageHeader from "../common/header/title/PageHeader";
 import Cookies from "js-cookie";
-import axios from "../../axios";
+import axios from "axios";
 import Swal from "sweetalert2";
 import Profile from "./Profile";
 

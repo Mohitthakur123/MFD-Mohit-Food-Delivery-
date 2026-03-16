@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import PageHeader from "../common/header/title/PageHeader";
 import FoodItem from "./FoodItem";
 import "./food.css";
-import axios from "../../axios";
+import axios from "axios";
 
 const Food = () => {
   const [query, setQuery] = useState("");

@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import axios from "../../axios";
+import axios from "axios";
 import { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
-
 
 const CategoriesItem = () => {
   // GET CATEGORIES

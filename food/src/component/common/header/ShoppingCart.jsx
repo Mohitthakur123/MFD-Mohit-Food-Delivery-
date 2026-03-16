@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "react-use-cart";
 import Swal from "sweetalert2";
-import axios from "../../axios";
+import axios from "axios";
 
 const ShoppingCart = () => {
   // ADD TO CART
