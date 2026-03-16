@@ -126,7 +126,7 @@ const NewFood = () => {
 
               {categories?.map((item) => (
                 <option key={item._id} value={item.title}>
-                  {item.title}
+                  {item.name}
                 </option>
               ))}
             </select>
