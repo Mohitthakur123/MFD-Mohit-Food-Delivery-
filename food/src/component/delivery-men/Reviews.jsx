@@ -17,7 +17,7 @@ const Reviews = () => {
   const [deliveryManReviews, setDeliveryManReviews] = useState([]);
   useEffect(() => {
     const fatchDeliveryMan = async () => {
-      const { data } = await axios.get(`/api/admin/delivery-men/${id}`);
+      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/delivery-men/${id}`);
       setDeliveryMan(data);
       setDeliveryManReviews(data.reviews);
     };

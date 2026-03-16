@@ -12,7 +12,7 @@ const HFood = () => {
   useEffect(() => {
     const fetchFoods = async () => {
       try {
-        const { data } = await axios.get(`/api/admin/foods`);
+        const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/foods`);
 
         const featuredFoods = data.filter((curData) => {
           return curData.featured.toLowerCase() === "on";

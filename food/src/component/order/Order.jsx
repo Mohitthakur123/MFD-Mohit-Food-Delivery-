@@ -59,7 +59,7 @@ function Order() {
   const id = Cookies.get("customer");
   useEffect(() => {
     const fatchCustomer = async () => {
-      const { data } = await axios.get(`/api/admin/customers/${id}`);
+      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/customers/${id}`);
       setPhone(data.phone);
       setEmail(data.email);
       setAddress(data.address);
@@ -87,7 +87,7 @@ function Order() {
           total_price: cartTotal + deliveryCost,
         };
         axios
-          .post(`/api/admin/orders`, data, {
+          .post(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/orders`, data, {
             headers: {
               "Content-Type": "application/json",
             },

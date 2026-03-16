@@ -11,7 +11,7 @@ const SingleMessage = () => {
   const [message, setMessage] = useState([]);
   useEffect(() => {
     const fatchMessages = async () => {
-      const { data } = await axios.get(`/api/admin/messages/${id}`);
+      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/messages/${id}`);
       setMessage(data);
     };
     fatchMessages();
@@ -28,7 +28,7 @@ const SingleMessage = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`/api/admin/messages/${id}`)
+          .delete(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/messages/${id}`)
           .then((response) => {
             Swal.fire({
               icon: "success",

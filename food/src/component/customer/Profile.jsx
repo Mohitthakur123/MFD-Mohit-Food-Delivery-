@@ -4,7 +4,7 @@ import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const BASE_URL = "https://mfd-mohit-food-delivery-1.onrender.com";
+const BASE_URL = "https://mfd-mohit-food-delivery.onrender.com";
 
 const Profile = () => {
 
@@ -20,7 +20,7 @@ const Profile = () => {
 
     const fetchCustomer = async () => {
       try {
-        const { data } = await axios.get(`/api/admin/customers/${id}`);
+        const { data } = await axios.get(`mfd-mohit-food-delivery-1.onrender.com/api/admin/customers/${id}`);
         setCustomer(data);
       } catch (error) {
         console.log(error);

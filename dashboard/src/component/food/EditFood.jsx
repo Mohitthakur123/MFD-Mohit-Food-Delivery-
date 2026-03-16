@@ -17,7 +17,7 @@ export const EditFood = () => {
   const [food, setFood] = useState({});
   useEffect(() => {
     const fatchFood = async () => {
-      const { data } = await axios.get(`/api/admin/foods/${id}`);
+      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/foods/${id}`);
       setFood(data);
       setTitle(data.title);
       setThumb(data.thumb);
@@ -33,7 +33,7 @@ export const EditFood = () => {
   const [selectCategories, setSelectCategories] = useState([]);
   useEffect(() => {
     const fatchSelectCategories = async () => {
-      const { data } = await axios.get("/api/admin/categories");
+      const { data } = await axios.get("https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/categories");
       setSelectCategories(data);
     };
     fatchSelectCategories();
@@ -58,7 +58,7 @@ export const EditFood = () => {
       active,
     };
     axios
-      .put(`/api/admin/foods/${id}?cthumb=${currentThumb}`, updateData, {
+      .put(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/foods/${id}?cthumb=${currentThumb}`, updateData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

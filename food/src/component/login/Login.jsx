@@ -17,7 +17,7 @@ const Login = () => {
       password,
     };
     axios
-      .post(`/api/admin/customerlogin`, data, {
+      .post(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/customerlogin`, data, {
         headers: {
           "Content-Type": "application/json",
         },

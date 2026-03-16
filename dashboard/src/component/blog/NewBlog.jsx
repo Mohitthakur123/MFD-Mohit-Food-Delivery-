@@ -17,7 +17,7 @@ const NewBlog = () => {
       featured,
     };
     axios
-      .post("/api/admin/blogs", data, {
+      .post("https://mfd-mohit-food-delivery.onrender.com/api/admin/blogs", data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

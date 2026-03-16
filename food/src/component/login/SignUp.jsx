@@ -24,7 +24,7 @@ const SignUp = () => {
         address,
       };
       axios
-        .post(`/api/admin/customers`, data, {
+        .post(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/customers`, data, {
           headers: {
             "Content-Type": "application/json",
           },

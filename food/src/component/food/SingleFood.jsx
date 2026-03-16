@@ -16,7 +16,7 @@ const SingleFood = () => {
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
     const fatchFood = async () => {
-      const { data } = await axios.get(`/api/admin/foods/${id}`);
+      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/foods/${id}`);
       setFood(data);
       setReviews(data.reviews.reverse());
     };
@@ -45,7 +45,7 @@ const SingleFood = () => {
   const [recomFoods, setRecomFoods] = useState([]);
   useEffect(() => {
     const fatchRecomFood = async () => {
-      const { data } = await axios.get(`/api/admin/foods/recommended`);
+      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/foods/recommended`);
       setRecomFoods(data);
     };
     fatchRecomFood();

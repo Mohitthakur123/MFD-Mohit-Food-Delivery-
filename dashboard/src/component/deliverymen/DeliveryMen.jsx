@@ -12,7 +12,7 @@ export const DeliveryMen = () => {
   const [deliveryMen, setDeliveryMen] = useState([]);
   useEffect(() => {
     const fatchDeliveryMen = async () => {
-      const { data } = await axios.get("/api/admin/delivery-men");
+      const { data } = await axios.get("https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/delivery-men");
       setDeliveryMen(data);
     };
     fatchDeliveryMen();
@@ -48,7 +48,7 @@ export const DeliveryMen = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`/api/admin/delivery-men/${id}?thumb=${thumb}`)
+          .delete(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/delivery-men/${id}?thumb=${thumb}`)
           .catch((error) => {
             Swal.fire({
               icon: "error",

@@ -12,7 +12,7 @@ const Message = () => {
   const [messages, setMessages] = useState([]);
   useEffect(() => {
     const fatchMessages = async () => {
-      const { data } = await axios.get("/api/admin/messages");
+      const { data } = await axios.get("https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/messages");
       setMessages(data);
     };
     fatchMessages();
@@ -47,7 +47,7 @@ const Message = () => {
       confirmButtonText: "Delete",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`/api/admin/messages/${id}`).catch((error) => {
+        axios.delete(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/messages/${id}`).catch((error) => {
           Swal.fire({
             icon: "error",
             title: "Oops...",
@@ -61,7 +61,7 @@ const Message = () => {
   // OPEN MESSAGE
   const viewHandler = (id) => {
     axios
-      .put(`/api/admin/messages/${id}`, {
+      .put(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/messages/${id}`, {
         headers: {
           "Content-Type": "application/json",
         },

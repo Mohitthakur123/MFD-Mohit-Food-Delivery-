@@ -17,7 +17,7 @@ const SingleOrder = () => {
   const [items, setitems] = useState([]);
   useEffect(() => {
     const fatchOrder = async () => {
-      const { data } = await axios.get(`/api/admin/orders/${id}`);
+      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/orders/${id}`);
       setOrder(data);
       setitems(data.items);
       setStatus(data.status);
@@ -32,7 +32,7 @@ const SingleOrder = () => {
   const [selectMan, setSelectMan] = useState([]);
   useEffect(() => {
     const fatchSelectMan = async () => {
-      const { data } = await axios.get("/api/admin/delivery-men");
+      const { data } = await axios.get("https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/delivery-men");
       const freeDeliveryMan = data.filter((curData) => {
         return curData.pendingOrders < 3;
       });
@@ -49,7 +49,7 @@ const SingleOrder = () => {
       setDeliveryManId(deliveryManId);
       const fatchDeliveryMen = async () => {
         const { data } = await axios.get(
-          `/api/admin/delivery-men/${deliveryManId}`
+          `https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/delivery-men/${deliveryManId}`
         );
         setDeliveryManName(data.name);
         setPendingOrders(data.pendingOrders);
@@ -70,7 +70,7 @@ const SingleOrder = () => {
       delivery_man_name: deliveryManName,
     };
     axios
-      .put(`/api/admin/orders/${id}`, updateData, {
+      .put(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/orders/${id}`, updateData, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -82,7 +82,7 @@ const SingleOrder = () => {
         };
         axios
           .put(
-            `/api/admin/delivery-men/${deliveryManId}?cthumb=${deliveryManThumb}`,
+            `https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/delivery-men/${deliveryManId}?cthumb=${deliveryManThumb}`,
             updateManData,
             {
               headers: {
@@ -126,7 +126,7 @@ const SingleOrder = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`/api/admin/orders/${id}`)
+          .delete(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/orders/${id}`)
           .then((response) => {
             Swal.fire({
               icon: "success",

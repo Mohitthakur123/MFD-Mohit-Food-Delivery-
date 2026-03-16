@@ -12,7 +12,7 @@ const Blog = () => {
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
     const fatchBlogs = async () => {
-      const { data } = await axios.get("/api/admin/blogs");
+      const { data } = await axios.get("https://mfd-mohit-food-delivery.onrender.com/api/admin/blogs");
       setBlogs(data);
     };
     fatchBlogs();
@@ -47,7 +47,7 @@ const Blog = () => {
       confirmButtonText: "Delete",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`/api/admin/blogs/${id}?thumb=${thumb}`).catch((error) => {
+        axios.delete(`https://mfd-mohit-food-delivery.onrender.com/blogs/${id}?thumb=${thumb}`).catch((error) => {
           Swal.fire({
             icon: "error",
             title: "Oops...",

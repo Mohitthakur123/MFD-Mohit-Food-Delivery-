@@ -10,7 +10,7 @@ const Search = () => {
   const [foods, setFoods] = useState([]);
   useEffect(() => {
     const fatchFoods = async () => {
-      const { data } = await axios.get(`/api/admin/foods?q=${query}`);
+      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/foods?q=${query}`);
       setFoods(data);
     };
     fatchFoods();

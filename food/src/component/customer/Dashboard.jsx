@@ -17,7 +17,7 @@ const Dashboard = () => {
   const customer_id = Cookies.get("customer");
   useEffect(() => {
     const fatchOrders = async () => {
-      const { data } = await axios.get(`/api/admin/orders`);
+      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/orders`);
       const fatchCustomerOrders = data.filter((curData) => {
         return curData.customer_id === customer_id;
       });
@@ -55,7 +55,7 @@ const Dashboard = () => {
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`/api/admin/orders/${id}`).catch((error) => {
+        axios.delete(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/orders/${id}`).catch((error) => {
           Swal.fire({
             icon: "error",
             title: "Oops...",
@@ -77,7 +77,7 @@ const Dashboard = () => {
   // const fatchDeliveryMan = async () => {
   //   const { data } = await axios.get(
   //     process.env.REACT_APP_SERVER +
-  //       `/api/admin/delivery-men/${deliveryManID}`
+  //       `https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/delivery-men/${deliveryManID}`
   //   );
   //   setDeliveryMan(data);
   //   setPendingOrders(data.pendingOrders);
@@ -101,7 +101,7 @@ const Dashboard = () => {
   // axios
   //   .put(
   //     process.env.REACT_APP_SERVER +
-  //       `/api/admin/delivery-men/${deliveryManID}?cthumb=${deliveryMan.thumb}`,
+  //       `https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/delivery-men/${deliveryManID}?cthumb=${deliveryMan.thumb}`,
   //     updateManData,
   //     {
   //       headers: {
@@ -133,7 +133,7 @@ const Dashboard = () => {
           status: "Delivered",
         };
         axios
-          .put(`/api/admin/orders/${id}`, updateData, {
+          .put(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/orders/${id}`, updateData, {
             headers: {
               "Content-Type": "application/json",
             },
@@ -154,7 +154,7 @@ const Dashboard = () => {
             // axios
             //   .put(
             //     process.env.REACT_APP_SERVER +
-            //       `/api/admin/delivery-men/${deliveryManID}?cthumb=${deliveryMan.thumb}`,
+            //       `https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/delivery-men/${deliveryManID}?cthumb=${deliveryMan.thumb}`,
             //     updateManData,
             //     {
             //       headers: {

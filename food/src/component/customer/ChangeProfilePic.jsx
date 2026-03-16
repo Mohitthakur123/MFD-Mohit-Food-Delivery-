@@ -15,7 +15,7 @@ const ProfilePicChange = () => {
   const id = Cookies.get("customer");
   useEffect(() => {
     const fatchCustomer = async () => {
-      const { data } = await axios.get(`/api/admin/customers/${id}`);
+      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/customers/${id}`);
       setThumb(data.thumb);
     };
     fatchCustomer();
@@ -27,7 +27,7 @@ const ProfilePicChange = () => {
       thumb: document.querySelector("#thumb").files[0],
     };
     axios
-      .put(`/api/admin/customers/${id}?cthumb=${currentThumb}`, updateData, {
+      .put(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/customers/${id}?cthumb=${currentThumb}`, updateData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

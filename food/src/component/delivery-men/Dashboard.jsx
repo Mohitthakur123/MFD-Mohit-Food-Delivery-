@@ -16,7 +16,7 @@ const Dashboard = () => {
   const delivery_man_id = Cookies.get("delivery-man");
   useEffect(() => {
     const fatchOrders = async () => {
-      const { data } = await axios.get(`/api/admin/orders`);
+      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/orders`);
       const fatchDeliveryManOrders = data.filter((curData) => {
         return curData.delivery_man_id === delivery_man_id;
       });

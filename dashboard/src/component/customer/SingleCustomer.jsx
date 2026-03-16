@@ -13,7 +13,7 @@ const SingleCustomer = () => {
   const [customer, setCustomer] = useState({});
   useEffect(() => {
     const fatchCustomer = async () => {
-      const { data } = await axios.get(`/api/admin/customers/${id}`);
+      const { data } = await axios.get(`https://mfd-mohit-food-delivery.onrender.com/api/admin/customers/${id}`);
       setCustomer(data);
     };
     fatchCustomer();
@@ -23,7 +23,7 @@ const SingleCustomer = () => {
   const [orders, setOrders] = useState([]);
   useEffect(() => {
     const fatchOrders = async () => {
-      const { data } = await axios.get("/api/admin/orders");
+      const { data } = await axios.get("https://mfd-mohit-food-delivery.onrender.com/api/admin/orders");
       const fatchOrders = data.filter((curData) => {
         return curData.customer_id === id;
       });
@@ -62,7 +62,7 @@ const SingleCustomer = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`/api/admin/customers/${id}?thumb=${thumb}`)
+          .delete(`https://mfd-mohit-food-delivery.onrender.com/api/admin/customers/${id}?thumb=${thumb}`)
           .then((response) => {
             Swal.fire({
               icon: "success",

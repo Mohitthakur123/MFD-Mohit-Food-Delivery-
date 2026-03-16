@@ -10,7 +10,7 @@ const NewUser = () => {
   const [admin, setAdmin] = useState({});
   useEffect(() => {
     const fatchAdmin = async () => {
-      const { data } = await axios.get(`/api/admin/users/${id}`);
+      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/users/${id}`);
       setAdmin(data);
     };
     fatchAdmin();
@@ -34,7 +34,7 @@ const NewUser = () => {
       address,
     };
     axios
-      .post("/api/admin/users", data, {
+      .post("https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/users", data, {
         headers: {
           "Content-Type": "application/json",
         },

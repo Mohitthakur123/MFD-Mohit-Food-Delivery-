@@ -14,7 +14,7 @@ const EditCategory = () => {
   const [category, setCategory] = useState({});
   useEffect(() => {
     const fatchCategory = async () => {
-      const { data } = await axios.get(`/api/admin/categories/${id}`);
+      const { data } = await axios.get(`https://mfd-mohit-food-delivery.onrender.com/api/admin/categories/${id}`);
       setCategory(data);
       setTitle(data.title);
       setThumb(data.thumb);
@@ -40,7 +40,7 @@ const EditCategory = () => {
       active,
     };
     axios
-      .put(`/api/admin/categories/${id}?cthumb=${currentThumb}`, updateData, {
+      .put(`https://mfd-mohit-food-delivery.onrender.com/api/admin/categories/${id}?cthumb=${currentThumb}`, updateData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

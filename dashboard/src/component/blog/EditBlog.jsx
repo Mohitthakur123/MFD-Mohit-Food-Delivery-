@@ -14,7 +14,7 @@ const EditBlog = () => {
   const [blog, setBlog] = useState({});
   useEffect(() => {
     const fatchBlog = async () => {
-      const { data } = await axios.get(`/api/admin/blogs/${id}`);
+      const { data } = await axios.get(`https://mfd-mohit-food-delivery.onrender.com/api/admin/blogs/${id}`);
       setBlog(data);
       setTitle(data.title);
       setThumb(data.thumb);
@@ -40,7 +40,7 @@ const EditBlog = () => {
       featured,
     };
     axios
-      .put(`/api/admin/blogs/${id}?cthumb=${currentThumb}`, updateData, {
+      .put(`https://mfd-mohit-food-delivery.onrender.com/api/admin/blogs/${id}?cthumb=${currentThumb}`, updateData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

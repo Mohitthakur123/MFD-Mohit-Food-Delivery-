@@ -17,7 +17,7 @@ const NewCategory = () => {
       active,
     };
     axios
-      .post("/api/admin/categories", data, {
+      .post("https://mfd-mohit-food-delivery.onrender.com/api/admin/categories", data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

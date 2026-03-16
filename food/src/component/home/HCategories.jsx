@@ -8,7 +8,7 @@ const HCategories = () => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     const fatchCategories = async () => {
-      const { data } = await axios.get(`/api/admin/categories`);
+      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/categories`);
       const featuredCategories = data.filter((curData) => {
         return curData.featured.toLowerCase() === "on";
       });

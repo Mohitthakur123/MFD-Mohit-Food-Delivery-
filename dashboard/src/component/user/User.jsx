@@ -13,7 +13,7 @@ const User = () => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
     const fatchUsers = async () => {
-      const { data } = await axios.get("/api/admin/users");
+      const { data } = await axios.get("https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/users");
       setUsers(data);
     };
     fatchUsers();
@@ -42,7 +42,7 @@ const User = () => {
   const [admin, setAdmin] = useState({});
   useEffect(() => {
     const fatchAdmin = async () => {
-      const { data } = await axios.get(`/api/admin/users/${id}`);
+      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com//users/${id}`);
       setAdmin(data);
     };
     fatchAdmin();
@@ -58,7 +58,7 @@ const User = () => {
       confirmButtonText: "Delete",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`/api/admin/users/${id}?thumb=${thumb}`).catch((error) => {
+        axios.delete(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/users/${id}?thumb=${thumb}`).catch((error) => {
           Swal.fire({
             icon: "error",
             title: "Oops...",

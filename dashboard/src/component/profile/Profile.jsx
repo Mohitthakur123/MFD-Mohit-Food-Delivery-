@@ -12,7 +12,7 @@ const Profile = () => {
   const [admin, setAdmin] = useState({});
   useEffect(() => {
     const fatchAdmin = async () => {
-      const { data } = await axios.get(`/api/admin/users/${id}`);
+      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/users/${id}`);
       setAdmin(data);
     };
     fatchAdmin();

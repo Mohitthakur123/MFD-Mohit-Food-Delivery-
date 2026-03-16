@@ -12,7 +12,7 @@ const Order = () => {
   const [orders, setOrders] = useState([]);
   useEffect(() => {
     const fatchOrders = async () => {
-      const { data } = await axios.get("/api/admin/orders");
+      const { data } = await axios.get("https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/orders");
       setOrders(data);
     };
     fatchOrders();
@@ -47,7 +47,7 @@ const Order = () => {
       confirmButtonText: "Delete",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`/api/admin/orders/${id}`).catch((error) => {
+        axios.delete(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/orders/${id}`).catch((error) => {
           Swal.fire({
             icon: "error",
             title: "Oops...",

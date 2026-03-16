@@ -12,7 +12,7 @@ const Category = () => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     const fatchCategories = async () => {
-      const { data } = await axios.get("/api/admin/categories");
+      const { data } = await axios.get("https://mfd-mohit-food-delivery.onrender.com/api/admin/categories");
       setCategories(data);
     };
     fatchCategories();
@@ -48,7 +48,7 @@ const Category = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`/api/admin/categories/${id}?thumb=${thumb}`)
+          .delete(`https://mfd-mohit-food-delivery.onrender.com/api/admin/categories/${id}?thumb=${thumb}`)
           .catch((error) => {
             Swal.fire({
               icon: "error",

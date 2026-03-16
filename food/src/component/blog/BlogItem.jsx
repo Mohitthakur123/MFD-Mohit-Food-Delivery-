@@ -9,7 +9,7 @@ const BlogItem = () => {
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
     const fatchBlogs = async () => {
-      const { data } = await axios.get(`/api/admin/blogs`);
+      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/blogs`);
       setBlogs(data);
     };
     fatchBlogs();

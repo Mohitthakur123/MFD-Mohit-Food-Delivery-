@@ -16,7 +16,7 @@ const SingleDeliveryMen = () => {
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
     const fatchDeliveryMen = async () => {
-      const { data } = await axios.get(`/api/admin/delivery-men/${id}`);
+      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/delivery-men/${id}`);
       setDeliveryMne(data);
       setReviews(data.reviews.reverse());
     };
@@ -27,7 +27,7 @@ const SingleDeliveryMen = () => {
   const [orders, setOrders] = useState([]);
   useEffect(() => {
     const fatchOrders = async () => {
-      const { data } = await axios.get("/api/admin/orders");
+      const { data } = await axios.get("https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/orders");
       const fatchOrders = data.filter((curData) => {
         return curData.delivery_man_id === id;
       });
@@ -66,7 +66,7 @@ const SingleDeliveryMen = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`/api/admin/delivery-men/${id}?thumb=${thumb}`)
+          .delete(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/delivery-men/${id}?thumb=${thumb}`)
           .then((response) => {
             Swal.fire({
               icon: "success",

@@ -17,7 +17,7 @@ const ChangePassword = () => {
   const id = Cookies.get("delivery-man");
   useEffect(() => {
     const fatchDeliveryMan = async () => {
-      const { data } = await axios.get(`/api/admin/delivery-men/${id}`);
+      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/delivery-men/${id}`);
       setThumb(data.thumb);
       setEmail(data.email);
     };
@@ -35,7 +35,7 @@ const ChangePassword = () => {
       };
       axios
         .put(
-          `/api/admin/delivery-men/${id}?cthumb=${currentThumb}`,
+          `https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/delivery-men/${id}?cthumb=${currentThumb}`,
           updateData,
           {
             headers: {

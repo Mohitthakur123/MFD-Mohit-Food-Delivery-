@@ -16,7 +16,7 @@ const ChangeDetails = () => {
   const id = Cookies.get("admin");
   useEffect(() => {
     const fatchAdmin = async () => {
-      const { data } = await axios.get(`/api/admin/users/${id}`);
+      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/users/${id}`);
       setName(data.name);
       setUsername(data.username);
       setEmail(data.email);
@@ -37,7 +37,7 @@ const ChangeDetails = () => {
       thumb: currentThumb,
     };
     axios
-      .put(`/api/admin/users/${id}?cthumb=${currentThumb}`, updateData, {
+      .put(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/users/${id}?cthumb=${currentThumb}`, updateData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

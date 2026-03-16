@@ -18,7 +18,7 @@ const NewMan = () => {
       address,
     };
     axios
-      .post("/api/admin/delivery-men", data, {
+      .post("https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/delivery-men", data, {
         headers: {
           "Content-Type": "application/json",
         },

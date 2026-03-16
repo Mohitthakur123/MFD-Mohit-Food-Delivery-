@@ -8,7 +8,7 @@ const NewFood = () => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     const fatchCategories = async () => {
-      const { data } = await axios.get("/api/admin/categories");
+      const { data } = await axios.get("https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/categories");
       setCategories(data);
     };
     fatchCategories();
@@ -33,7 +33,7 @@ const NewFood = () => {
       active,
     };
     axios
-      .post("/api/admin/foods", data, {
+      .post("https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/foods", data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

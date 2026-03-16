@@ -7,7 +7,7 @@ const CartItems = () => {
   const [orders, setOrders] = useState([]);
   useEffect(() => {
     const fatchOrders = async () => {
-      const { data } = await axios.get("/api/admin/orders");
+      const { data } = await axios.get("https://mfd-mohit-food-delivery.onrender.com/api/admin/orders");
       setOrders(data);
     };
     fatchOrders();
@@ -17,7 +17,7 @@ const CartItems = () => {
   const [revenue, setRevenue] = useState([]);
   useEffect(() => {
     const fatchRevenue = async () => {
-      const { data } = await axios.get("/api/admin/revenue");
+      const { data } = await axios.get("https://mfd-mohit-food-delivery.onrender.com/api/admin/revenue");
       setRevenue(data);
     };
     fatchRevenue();
@@ -27,7 +27,7 @@ const CartItems = () => {
   const [foods, setFoods] = useState([]);
   useEffect(() => {
     const fatchFoods = async () => {
-      const { data } = await axios.get("/api/admin/foods");
+      const { data } = await axios.get("https://mfd-mohit-food-delivery.onrender.com/api/admin/foods");
       setFoods(data);
     };
     fatchFoods();
@@ -37,7 +37,7 @@ const CartItems = () => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     const fatchCategories = async () => {
-      const { data } = await axios.get("/api/admin/categories");
+      const { data } = await axios.get("https://mfd-mohit-food-delivery.onrender.com/api/admin/categories");
       setCategories(data);
     };
     fatchCategories();
@@ -47,7 +47,7 @@ const CartItems = () => {
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
     const fatchBlogs = async () => {
-      const { data } = await axios.get("/api/admin/blogs");
+      const { data } = await axios.get("https://mfd-mohit-food-delivery.onrender.com/api/admin/blogs");
       setBlogs(data);
     };
     fatchBlogs();
@@ -57,7 +57,7 @@ const CartItems = () => {
   const [customers, setCustomers] = useState([]);
   useEffect(() => {
     const fatchCustomers = async () => {
-      const { data } = await axios.get("/api/admin/customers");
+      const { data } = await axios.get("https://mfd-mohit-food-delivery.onrender.com/api/admin/customers");
       setCustomers(data);
     };
     fatchCustomers();
@@ -67,7 +67,7 @@ const CartItems = () => {
   const [deliveryMan, setDeliveryMan] = useState([]);
   useEffect(() => {
     const fatchDeliveryMan = async () => {
-      const { data } = await axios.get("/api/admin/delivery-men");
+      const { data } = await axios.get("https://mfd-mohit-food-delivery.onrender.com/api/admin/delivery-men");
       setDeliveryMan(data);
     };
     fatchDeliveryMan();
@@ -77,7 +77,7 @@ const CartItems = () => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
     const fatchUsers = async () => {
-      const { data } = await axios.get("/api/admin/users");
+      const { data } = await axios.get("https://mfd-mohit-food-delivery.onrender.com/api/admin/users");
       setUsers(data);
     };
     fatchUsers();
@@ -87,7 +87,7 @@ const CartItems = () => {
   const [messages, setMessages] = useState([]);
   useEffect(() => {
     const fatchMessages = async () => {
-      const { data } = await axios.get("/api/admin/messages");
+      const { data } = await axios.get("https://mfd-mohit-food-delivery.onrender.com/api/admin/messages");
       setMessages(data);
     };
     fatchMessages();

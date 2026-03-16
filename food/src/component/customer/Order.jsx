@@ -19,7 +19,7 @@ const Order = () => {
   const [deliveryManID, setDeliveryManID] = useState("");
   useEffect(() => {
     const fatchOrder = async () => {
-      const { data } = await axios.get(`/api/admin/orders/${id}`);
+      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/orders/${id}`);
       setOrder(data);
       setitems(data.items);
       setDeliveryManID(data.delivery_man_id);
@@ -32,7 +32,7 @@ const Order = () => {
   useEffect(() => {
     const fatchDeliveryMan = async () => {
       const { data } = await axios.get(
-        `/api/admin/delivery-men/${deliveryManID}`
+        `https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/delivery-men/${deliveryManID}`
       );
       setDeliveryMan(data);
     };
@@ -51,7 +51,7 @@ const Order = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`/api/admin/orders/${id}`)
+          .delete(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/orders/${id}`)
           .then((response) => {
             Swal.fire({
               icon: "success",
@@ -87,7 +87,7 @@ const Order = () => {
       deliveryManID,
     };
     axios
-      .post(`/api/admin/delivery-men/${id}/review`, data, {
+      .post(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/delivery-men/${id}/review`, data, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -104,7 +104,7 @@ const Order = () => {
             deliveryManReview: "Yes",
           };
           axios
-            .put(`/api/admin/orders/${id}`, updateData, {
+            .put(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/orders/${id}`, updateData, {
               headers: {
                 "Content-Type": "application/json",
               },
@@ -158,7 +158,7 @@ const Order = () => {
             customer_id,
           };
           axios
-            .post(`/api/admin/foods/${foodID}/review`, data, {
+            .post(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/foods/${foodID}/review`, data, {
               headers: {
                 "Content-Type": "application/json",
               },
@@ -174,7 +174,7 @@ const Order = () => {
                 let foodData = {
                   food_id: foodID,
                 };
-                axios.put(`/api/admin/orders/${id}/review/`, foodData, {
+                axios.put(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/orders/${id}/review/`, foodData, {
                   headers: {
                     "Content-Type": "application/json",
                   },
@@ -220,7 +220,7 @@ const Order = () => {
           status: "Delivered",
         };
         axios
-          .put(`/api/admin/orders/${id}`, updateData, {
+          .put(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/orders/${id}`, updateData, {
             headers: {
               "Content-Type": "application/json",
             },
@@ -233,7 +233,7 @@ const Order = () => {
             };
             axios
               .put(
-                `/api/admin/delivery-men/${deliveryManID}?cthumb=${deliveryMan.thumb}`,
+                `https://mfd-mohit-food-delivery-admin.onrender.com/delivery-men/${deliveryManID}?cthumb=${deliveryMan.thumb}`,
                 updateManData,
                 {
                   headers: {

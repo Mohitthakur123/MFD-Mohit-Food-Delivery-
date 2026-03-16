@@ -11,7 +11,7 @@ const Revenue = () => {
   const [orders, setOrders] = useState([]);
   useEffect(() => {
     const fatchOrders = async () => {
-      const { data } = await axios.get("/api/admin/orders");
+      const { data } = await axios.get("https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/orders");
       const completeOrder = data.filter((curData) => {
         return curData.status.toLowerCase() === "delivered";
       });

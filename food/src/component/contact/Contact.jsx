@@ -23,7 +23,7 @@ const Contact = () => {
       message,
     };
     axios
-      .post(`/api/admin/messages`, data, {
+      .post(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/messages`, data, {
         headers: {
           "Content-Type": "application/json",
         },

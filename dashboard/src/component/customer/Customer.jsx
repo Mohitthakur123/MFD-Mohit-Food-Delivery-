@@ -12,7 +12,7 @@ const Customer = () => {
   const [customers, setCustomers] = useState([]);
   useEffect(() => {
     const fatchCustomers = async () => {
-      const { data } = await axios.get("/api/admin/customers");
+      const { data } = await axios.get("https://mfd-mohit-food-delivery.onrender.com/api/admin/customers");
       setCustomers(data);
     };
     fatchCustomers();
@@ -48,7 +48,7 @@ const Customer = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`/api/admin/customers/${id}?thumb=${thumb}`)
+          .delete(`https://mfd-mohit-food-delivery.onrender.com/api/admin/customers/${id}?thumb=${thumb}`)
           .catch((error) => {
             Swal.fire({
               icon: "error",

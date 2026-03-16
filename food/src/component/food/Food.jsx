@@ -11,7 +11,7 @@ const Food = () => {
   useEffect(() => {
     const fetchFoods = async () => {
       try {
-        const { data } = await axios.get(`/api/admin/foods?q=${query}`);
+        const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/foods?q=${query}`);
 
         console.log(data);
 
