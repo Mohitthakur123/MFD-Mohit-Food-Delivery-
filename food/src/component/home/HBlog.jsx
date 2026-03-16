@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Title from "../common/header/title/Title";
-import axios from "axios";
+import axios from "../../axios";
 import moment from "moment";
 
 const HBlog = () => {

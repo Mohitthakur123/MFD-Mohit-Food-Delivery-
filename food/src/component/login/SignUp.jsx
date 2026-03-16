@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PageHeader from "../common/header/title/PageHeader";
 import "./login.css";
-import axios from "axios";
+import axios from "../../axios";
 import Swal from "sweetalert2";
 import Cookies from "js-cookie";
 

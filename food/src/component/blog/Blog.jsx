@@ -2,6 +2,7 @@ import React from "react";
 import PageHeader from "../common/header/title/PageHeader";
 import "./blog.css";
 import BlogItem from "./BlogItem";
+import axios from "../../axios";
 
 const Blog = () => {
   return (

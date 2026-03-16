@@ -31,7 +31,7 @@ import ManProfilePicChange from "./component/delivery-men/ChangeProfilePic";
 import ManChangePassword from "./component/delivery-men/ChangePassword";
 import ManChangeDetails from "./component/delivery-men/ChangeDetails";
 import ScrollToTop from "./component/common/scroll-to-top/ScrollToTop";
-
+import axios from "../../axios";
 const App = () => {
   return (
     <Router>

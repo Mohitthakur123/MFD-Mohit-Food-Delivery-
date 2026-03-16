@@ -4,6 +4,7 @@ import { useCart } from "react-use-cart";
 import Swal from "sweetalert2";
 import Rating from "../common/rating/Rating";
 import ReactPaginate from "react-paginate";
+import axios from "../../axios";
 
 const FoodItem = ({ foods }) => {
   const [itemOffset, setItemOffset] = useState(0);

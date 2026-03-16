@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../axios";
 import React, { useEffect, useState } from "react";
 import FoodItem from "../../food/FoodItem";
 import Title from "../header/title/Title";

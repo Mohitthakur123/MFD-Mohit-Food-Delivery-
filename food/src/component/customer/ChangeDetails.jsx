@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import PageHeader from "../common/header/title/PageHeader";
 import "./customer.css";
-import axios from "axios";
+import axios from "../../axios";
 import Swal from "sweetalert2";
 import Profile from "./Profile";
 

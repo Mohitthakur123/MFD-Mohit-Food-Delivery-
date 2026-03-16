@@ -2,6 +2,7 @@ import React from "react";
 import PageHeader from "../common/header/title/PageHeader";
 import CategoriesItem from "./CategoriesItem";
 import "./categories.css";
+import axios from "../../axios";
 
 const Categories = () => {
   return (
