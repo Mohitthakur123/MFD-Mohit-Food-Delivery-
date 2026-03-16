@@ -6,6 +6,8 @@ import Cookies from "js-cookie";
 import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 
+const BASE_URL = "https://mfd-mohit-food-delivery-1.onrender.com";
+
 const Header = () => {
 
   const [siteTopNav, setSiteTopNav] = useState(false);
@@ -34,7 +36,7 @@ const Header = () => {
     };
   }, []);
 
-  // CLOSE CART DROPDOWN
+  // CLOSE CART
   useEffect(() => {
     const handler = (e) => {
       if (cartRef.current && !cartRef.current.contains(e.target)) {
@@ -49,7 +51,7 @@ const Header = () => {
     };
   }, []);
 
-  // CLOSE PROFILE DROPDOWN
+  // CLOSE PROFILE
   useEffect(() => {
     const handler = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
@@ -102,7 +104,7 @@ const Header = () => {
     fetchDeliveryMan();
   }, [deliveryMan_id]);
 
-  // LOGOUTS
+  // LOGOUT
   const customerLogout = () => {
     Cookies.remove("customer");
     Cookies.remove("customerName");
@@ -126,7 +128,7 @@ const Header = () => {
           <div className="logo">
             <Link to="/">
               <img
-                src="/default/logo.png"
+                src={`${BASE_URL}/default/logo.png`}
                 alt="Restaurant Logo"
                 className="img-responsive"
               />
@@ -176,8 +178,8 @@ const Header = () => {
                       <img
                         src={
                           customer?.thumb
-                            ? "/customers/" + customer.thumb
-                            : "/default/avatar.png"
+                            ? `${BASE_URL}/customers/${customer.thumb}`
+                            : `${BASE_URL}/default/avatar.png`
                         }
                         alt="avatar"
                       />
@@ -212,8 +214,8 @@ const Header = () => {
                       <img
                         src={
                           deliveryMan?.thumb
-                            ? "/delivery-men/" + deliveryMan.thumb
-                            : "/default/avatar.png"
+                            ? `${BASE_URL}/delivery-men/${deliveryMan.thumb}`
+                            : `${BASE_URL}/default/avatar.png`
                         }
                         alt="avatar"
                       />

@@ -4,17 +4,32 @@ import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+const BASE_URL = "https://mfd-mohit-food-delivery-1.onrender.com";
+
 const Profile = () => {
-  // GET CUSTOMER DETAILS
+
+  // GET CUSTOMER ID FROM COOKIE
   const id = Cookies.get("customer");
+
   const [customer, setCustomer] = useState({});
+
+  // FETCH CUSTOMER DATA
   useEffect(() => {
-    const fatchCustomer = async () => {
-      const { data } = await axios.get(`/api/admin/customers/${id}`);
-      setCustomer(data);
+
+    if (!id) return;
+
+    const fetchCustomer = async () => {
+      try {
+        const { data } = await axios.get(`/api/admin/customers/${id}`);
+        setCustomer(data);
+      } catch (error) {
+        console.log(error);
+      }
     };
-    fatchCustomer();
-  }, [customer]);
+
+    fetchCustomer();
+
+  }, [id]);
 
   // CUSTOMER LOGOUT
   const customerLogout = () => {
@@ -26,42 +41,64 @@ const Profile = () => {
   return (
     <>
       <div className="dashboard-content-inner grid-2">
+
         <div className="grid-2">
+
+          {/* PROFILE IMAGE */}
           <div className="img">
-            <img src={"/customers/" + customer.thumb} alt={customer.name} />
+            <img
+              src={
+                customer?.thumb
+                  ? `${BASE_URL}/customers/${customer.thumb}`
+                  : `${BASE_URL}/default/avatar.png`
+              }
+              alt={customer.name || "avatar"}
+            />
           </div>
+
+          {/* PROFILE TEXT */}
           <div className="profile-text">
+
             <h4>
-              <i class="fa fa-user"></i> {customer.name}
+              <i className="fa fa-user"></i> {customer.name}
             </h4>
+
             <p>
-              <i class="fa fa-user-plus"></i>
-              {""}
+              <i className="fa fa-user-plus"></i>{" "}
               {customer.date && moment(customer.date).format("ll")}
             </p>
+
             <p>
-              <i class="fa fa-envelope"></i> {customer.email}
+              <i className="fa fa-envelope"></i> {customer.email}
             </p>
+
             <p>
-              <i class="fa fa-phone"></i> {customer.phone}
+              <i className="fa fa-phone"></i> {customer.phone}
             </p>
+
             <p>
-              <i class="fa fa-location-dot"></i> {customer.address}
+              <i className="fa fa-location-dot"></i> {customer.address}
             </p>
+
           </div>
         </div>
+
+        {/* PROFILE MENU */}
         <div>
           <ul>
+
             <li>
               <Link to="/customer/dashboard" className="btn-primary">
                 Dashboard
               </Link>
             </li>
+
             <li>
               <Link to="/customer/change-details" className="btn-primary">
                 Change Details
               </Link>
             </li>
+
             <li>
               <Link
                 to="/customer/change-profile-picture"
@@ -70,25 +107,28 @@ const Profile = () => {
                 Change Profile Picture
               </Link>
             </li>
+
             <li>
               <Link to="/customer/change-password" className="btn-primary">
                 Change Password
               </Link>
             </li>
+
             <li>
               <Link
-                onClick={() => {
-                  customerLogout();
-                }}
+                onClick={customerLogout}
                 className="btn-primary"
               >
                 Logout
               </Link>
             </li>
+
           </ul>
         </div>
+
       </div>
     </>
   );
 };
+
 export default Profile;
