@@ -1,168 +1,174 @@
 import axios from "axios";
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Title from "../common/title/Title";
 import Swal from "sweetalert2";
 
 const NewFood = () => {
   const [categories, setCategories] = useState([]);
+
   useEffect(() => {
-    const fatchCategories = async () => {
-      const { data } = await axios.get("https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/categories");
-      setCategories(data);
+    const fetchCategories = async () => {
+      try {
+        const res = await axios.get(
+          "https://mfd-mohit-food-delivery-1.onrender.com/api/admin/categories"
+        );
+
+        setCategories(res.data.data || res.data);
+      } catch (error) {
+        console.log(error);
+      }
     };
-    fatchCategories();
+
+    fetchCategories();
   }, []);
 
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
-  const [featured, setFeatured] = useState("");
-  const [active, setActive] = useState("");
+  const [featured, setFeatured] = useState(false);
+  const [active, setActive] = useState(false);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    let data = {
-      title,
-      thumb: document.querySelector("#thumb").files[0],
-      price,
-      category,
-      description,
-      featured,
-      active,
-    };
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("thumb", document.querySelector("#thumb").files[0]);
+    formData.append("price", price);
+    formData.append("category", category);
+    formData.append("description", description);
+    formData.append("featured", featured);
+    formData.append("active", active);
+
     axios
-      .post("https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/foods", data, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then((response) => {
+      .post(
+        "https://mfd-mohit-food-delivery-1.onrender.com/api/admin/foods",
+        formData
+      )
+      .then(() => {
         Swal.fire({
           icon: "success",
-          text: "Food added successfull.",
+          text: "Food added successfully",
           showConfirmButton: false,
-          timer: 500,
+          timer: 800,
         });
+
         window.location.href = "/foods";
       })
-      .catch((error) => {
+      .catch(() => {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Food added faield!",
+          text: "Food add failed!",
         });
       });
   };
 
-  // SHOWING UPLOADED IMAGE
   const [file, setFile] = useState();
+
   function handleThumbChange(e) {
     setFile(URL.createObjectURL(e.target.files[0]));
   }
 
   return (
-    <>
-      <section className="food content">
-        <Title title="New Food" />
-        <div className="food-content">
-          <form enctype="multipart/form-data" onSubmit={submitHandler}>
-            <div class="form-floating mb-3">
-              <input
-                type="text"
-                name="title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                class="form-control"
-                placeholder="Category title..."
-                required
-              />
-              <label for="floatingInput">Food title...</label>
-            </div>
-            <div class="mb-3">
-              {file && <img src={file} alt="" />}
-              <input
-                type="file"
-                name="thumb"
-                id="thumb"
-                class="form-control"
-                onChange={handleThumbChange}
-                required
-              />
-            </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text">৳</span>
-              <input
-                type="number"
-                name="price"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-                class="form-control"
-                placeholder="Price..."
-                required
-              />
-            </div>
+    <section className="food content">
+      <Title title="New Food" />
 
-            <div class="form-floating">
-              <select
-                name="category"
-                onChange={(e) => setCategory(e.target.value)}
-                class="form-select"
-                required
-              >
-                <option value="" selected>
-                  Select
+      <div className="food-content">
+        <form encType="multipart/form-data" onSubmit={submitHandler}>
+          <div className="form-floating mb-3">
+            <input
+              type="text"
+              name="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="form-control"
+              placeholder="Food title"
+              required
+            />
+            <label>Food title...</label>
+          </div>
+
+          <div className="mb-3">
+            {file && <img src={file} alt="" width="120" />}
+            <input
+              type="file"
+              name="thumb"
+              id="thumb"
+              className="form-control"
+              onChange={handleThumbChange}
+              required
+            />
+          </div>
+
+          <div className="input-group mb-3">
+            <span className="input-group-text">₹</span>
+            <input
+              type="number"
+              name="price"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              className="form-control"
+              placeholder="Price"
+              required
+            />
+          </div>
+
+          <div className="form-floating">
+            <select
+              name="category"
+              onChange={(e) => setCategory(e.target.value)}
+              className="form-select"
+              required
+            >
+              <option value="">Select</option>
+
+              {categories?.map((item) => (
+                <option key={item._id} value={item.title}>
+                  {item.title}
                 </option>
-                {categories.map((item) => (
-                  <option value={item.title}>{item.title}</option>
-                ))}
-              </select>
-              <label for="category">Category</label>
-            </div>
+              ))}
+            </select>
+            <label>Category</label>
+          </div>
 
-            <div class="mb-3">
-              <textarea
-                class="form-control"
-                name="description"
-                rows="5"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                placeholder="Description..."
-                required
-              ></textarea>
-            </div>
+          <div className="mb-3">
+            <textarea
+              className="form-control"
+              name="description"
+              rows="5"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="Description"
+              required
+            />
+          </div>
 
-            <div class="form-check form-switch">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                name="featured"
-                onChange={(e) => setFeatured(e.target.value)}
-                id="featured"
-              />
-              <label class="form-check-label" for="featured">
-                Featured
-              </label>
-            </div>
-            <div class="form-check form-switch">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                name="active"
-                onChange={(e) => setActive(e.target.value)}
-                id="active"
-              />
-              <label class="form-check-label" for="active">
-                Active
-              </label>
-            </div>
+          <div className="form-check form-switch">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              onChange={(e) => setFeatured(e.target.checked)}
+            />
+            <label className="form-check-label">Featured</label>
+          </div>
 
-            <input type="submit" className="btn-primary" />
-          </form>
-        </div>
-      </section>
-    </>
+          <div className="form-check form-switch">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              onChange={(e) => setActive(e.target.checked)}
+            />
+            <label className="form-check-label">Active</label>
+          </div>
+
+          <button type="submit" className="btn-primary">
+            Add Food
+          </button>
+        </form>
+      </div>
+    </section>
   );
 };
 
