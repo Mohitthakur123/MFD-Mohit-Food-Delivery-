@@ -14,9 +14,13 @@ const ChangeDetails = () => {
 
   // GET ADMIN DETAILS
   const id = Cookies.get("admin");
+
   useEffect(() => {
-    const fatchAdmin = async () => {
-      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/users/${id}`);
+    const fetchAdmin = async () => {
+      const { data } = await axios.get(
+        `https://mfd-mohit-food-delivery-1.onrender.com/api/admin/users/${id}`
+      );
+
       setName(data.name);
       setUsername(data.username);
       setEmail(data.email);
@@ -24,11 +28,13 @@ const ChangeDetails = () => {
       setAddress(data.address);
       setThumb(data.thumb);
     };
-    fatchAdmin();
+
+    fetchAdmin();
   }, [id]);
 
   const submitHandler = (e) => {
     e.preventDefault();
+
     let updateData = {
       name,
       username,
@@ -36,12 +42,17 @@ const ChangeDetails = () => {
       address,
       thumb: currentThumb,
     };
+
     axios
-      .put(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/users/${id}?cthumb=${currentThumb}`, updateData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
+      .put(
+        `https://mfd-mohit-food-delivery-1.onrender.com/api/admin/users/${id}?cthumb=${currentThumb}`,
+        updateData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
       .then((response) => {
         Swal.fire({
           icon: "success",
@@ -49,13 +60,14 @@ const ChangeDetails = () => {
           showConfirmButton: false,
           timer: 500,
         });
+
         window.location.href = "/profile";
       })
-      .catch((error) => {
+      .catch(() => {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Update field!",
+          text: "Update failed!",
         });
       });
   };
@@ -64,54 +76,54 @@ const ChangeDetails = () => {
     <>
       <section className="profile content">
         <Title title="Change Details" />
+
         <div className="profile-content">
-          <form enctype="multipart/form-data" onSubmit={submitHandler}>
+          <form encType="multipart/form-data" onSubmit={submitHandler}>
             <label htmlFor="name">Name</label>
             <input
               type="text"
-              class="form-control"
-              id="floatingInput"
+              className="form-control"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
             />
+
             <label htmlFor="username">Username</label>
             <input
               type="text"
-              class="form-control"
-              id="floatingInput"
+              className="form-control"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
             />
+
             <label htmlFor="email">Email</label>
             <input
               type="text"
-              class="form-control text-bold"
-              id="floatingInput"
+              className="form-control text-bold"
               value={email}
               readOnly
             />
+
             <label htmlFor="phone">Phone</label>
             <input
               type="tel"
-              class="form-control"
-              id="floatingInput"
+              className="form-control"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               required
             />
+
             <label htmlFor="address">Address</label>
             <input
               type="text"
-              class="form-control"
-              id="floatingInput"
+              className="form-control"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
               required
             />
 
-            <input type="submit" className="btn-primary" />
+            <input type="submit" className="btn-primary" value="Update" />
           </form>
         </div>
       </section>
