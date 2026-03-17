@@ -10,57 +10,75 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    let data = {
-      email,
-      password,
-    };
-    axios
-      .post(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/customerlogin`, data, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        if (response.data.message === "Email doesn't exist.") {
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Email doesn't exist.",
-          });
-        } else if (response.data.message === "Password doesn't match.") {
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Password doesn't match.",
-          });
-        } else {
-          // Set Cookies
-          Cookies.set("customer", response.data.customer._id, { expires: 30 });
-          Cookies.set("customerName", response.data.customer.name, {
-            expires: 30,
-          });
-          Swal.fire({
-            icon: "success",
-            text: response.data.message,
-            showConfirmButton: false,
-            timer: 500,
-          });
-          window.location.href = "/customer/dashboard/";
+
+    try {
+      const data = {
+        email,
+        password,
+      };
+
+      console.log("Sending login request...");
+
+      const response = await axios.post(
+        "https://mfd-mohit-food-delivery.onrender.com/api/admin/customerlogin",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      })
-      .catch((error) => {
+      );
+
+      console.log("Response:", response.data);
+
+      if (response.data.message === "Email doesn't exist.") {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Something wrong.",
+          text: "Email doesn't exist.",
         });
+      } else if (response.data.message === "Password doesn't match.") {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Password doesn't match.",
+        });
+      } else {
+        // ✅ Set Cookies
+        Cookies.set("customer", response.data.customer._id, {
+          expires: 30,
+        });
+        Cookies.set("customerName", response.data.customer.name, {
+          expires: 30,
+        });
+
+        Swal.fire({
+          icon: "success",
+          text: response.data.message,
+          showConfirmButton: false,
+          timer: 800,
+        });
+
+        // ✅ Redirect
+        window.location.href = "/customer/dashboard/";
+      }
+    } catch (error) {
+      console.log("Login Error:", error.response?.data || error.message);
+
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.response?.data?.message || "Something went wrong!",
       });
+    }
   };
+
   return (
     <>
       <PageHeader title="Login" />
+
       <section className="login">
         <div className="container">
           <div className="login-form text-center">
@@ -69,7 +87,13 @@ const Login = () => {
             ) : (
               <div>
                 <form onSubmit={submitHandler}>
-                  <img src={"https://mfd-mohit-food-delivery.onrender.com/default/avatar.png"} alt="" />
+                  <img
+                    src={
+                      "https://mfd-mohit-food-delivery.onrender.com/default/avatar.png"
+                    }
+                    alt="avatar"
+                  />
+
                   <input
                     type="email"
                     name="email"
@@ -78,20 +102,23 @@ const Login = () => {
                     placeholder="Email..."
                     required
                   />
+
                   <input
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="password..."
+                    placeholder="Password..."
                     required
                   />
+
                   <input
                     type="submit"
                     name="submit"
                     value="Login"
-                    class="btn-primary"
+                    className="btn-primary"
                   />
                 </form>
+
                 <Link to="/registration">Create Account</Link>
               </div>
             )}

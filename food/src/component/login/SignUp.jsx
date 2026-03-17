@@ -13,55 +13,72 @@ const SignUp = () => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    if (password === conPassword) {
-      let data = {
+
+    if (password !== conPassword) {
+      Swal.fire({
+        icon: "error",
+        text: "Confirm password doesn't match.",
+      });
+      return;
+    }
+
+    try {
+      const data = {
         name,
         email,
         password,
         phone,
         address,
       };
-      axios
-        .post(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/customers`, data, {
+
+      console.log("Sending register request...");
+
+      const response = await axios.post(
+        "https://mfd-mohit-food-delivery.onrender.com/api/admin/customers",
+        data,
+        {
           headers: {
             "Content-Type": "application/json",
           },
-        })
-        .then((response) => {
-          if (response.data.message === "Registration successfull.") {
-            // Set Cookies
-            Cookies.set("customer", response.data.data._id, { expires: 30 });
-            Cookies.set("customerName", response.data.data.name, {
-              expires: 30,
-            });
-            Swal.fire({
-              icon: "success",
-              text: response.data.message,
-              showConfirmButton: false,
-              timer: 500,
-            });
-            window.location.href = "/customer/dashboard";
-          } else if (response.data.message === "Already registered.") {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: response.data.message,
-            });
-          }
-        })
-        .catch((error) => {
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Something wrong.",
-          });
+        }
+      );
+
+      console.log("Response:", response.data);
+
+      if (response.data.message === "Registration successfull.") {
+        // ✅ Set Cookies
+        Cookies.set("customer", response.data.data._id, {
+          expires: 30,
         });
-    } else {
+        Cookies.set("customerName", response.data.data.name, {
+          expires: 30,
+        });
+
+        Swal.fire({
+          icon: "success",
+          text: response.data.message,
+          showConfirmButton: false,
+          timer: 800,
+        });
+
+        // ✅ Redirect
+        window.location.href = "/customer/dashboard";
+      } else if (response.data.message === "Already registered.") {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: response.data.message,
+        });
+      }
+    } catch (error) {
+      console.log("Register Error:", error.response?.data || error.message);
+
       Swal.fire({
         icon: "error",
-        text: "Confirm password doesn't match.",
+        title: "Oops...",
+        text: error.response?.data?.message || "Something went wrong!",
       });
     }
   };
@@ -69,64 +86,70 @@ const SignUp = () => {
   return (
     <>
       <PageHeader title="Registration" />
+
       <section className="login">
         <div className="container">
           <div className="login-form text-center">
             <form onSubmit={submitHandler}>
-              <img src={"https://mfd-mohit-food-delivery.onrender.com/default/avatar.png"} alt="" />
+              <img
+                src={
+                  "https://mfd-mohit-food-delivery.onrender.com/default/avatar.png"
+                }
+                alt="avatar"
+              />
+
               <input
                 type="text"
-                name="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Name..."
                 required
               />
+
               <input
                 type="email"
-                name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email..."
                 required
               />
+
               <input
                 type="password"
-                name="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password..."
                 required
               />
+
               <input
                 type="password"
-                name="con-password"
                 value={conPassword}
                 onChange={(e) => setConPassword(e.target.value)}
                 placeholder="Confirm password..."
                 required
               />
+
               <input
                 type="tel"
-                name="phone"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="Phone..."
                 required
               />
+
               <input
                 type="text"
-                name="address"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 placeholder="Address..."
                 required
               />
+
               <input
                 type="submit"
-                name="submit"
                 value="Registration"
-                class="btn-primary"
+                className="btn-primary"
               />
             </form>
           </div>
