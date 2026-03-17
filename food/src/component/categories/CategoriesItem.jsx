@@ -10,10 +10,15 @@ const CategoriesItem = () => {
 
   useEffect(() => {
     const fatchCategories = async () => {
-      const { data } = await axios.get(
-        "https://mfd-mohit-food-delivery.onrender.com/api/admin/categories",
-      );
-      setCategories(data);
+      try {
+        const { data } = await axios.get(
+          "https://mfd-mohit-food-delivery.onrender.com/api/admin/categories"
+        );
+        console.log("Categories:", data);
+        setCategories(data);
+      } catch (error) {
+        console.log("Category Error:", error.response?.data || error.message);
+      }
     };
     fatchCategories();
   }, []);
@@ -48,7 +53,7 @@ const CategoriesItem = () => {
                 <div className="box-3 float-container">
                   <div className="category-thumb text-center">
                     <img
-                      src={`https://mfd-mohit-food-delivery.onrender.com/uploads/categories/${item.thumb}`}
+                      src={`https://mfd-mohit-food-delivery.onrender.com/categories/${item.thumb}`}
                       alt={item.title}
                       className="img-responsive img-curve"
                     />

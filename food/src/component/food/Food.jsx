@@ -11,14 +11,15 @@ const Food = () => {
   useEffect(() => {
     const fetchFoods = async () => {
       try {
-        const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/foods?q=${query}`);
+        const { data } = await axios.get(
+          `https://mfd-mohit-food-delivery.onrender.com/api/admin/foods?q=${query}`
+        );
 
-        console.log(data);
+        console.log("Foods:", data);
 
-        // your backend returns array
         setFoods(data);
       } catch (error) {
-        console.log(error);
+        console.log("Food Error:", error.response?.data || error.message);
       }
     };
 
@@ -34,7 +35,6 @@ const Food = () => {
           <div className="search-food-form">
             <input
               type="search"
-              name="search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search for Food.."

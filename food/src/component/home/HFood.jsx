@@ -12,7 +12,9 @@ const HFood = () => {
   useEffect(() => {
     const fetchFoods = async () => {
       try {
-        const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/foods`);
+        const { data } = await axios.get(
+          "https://mfd-mohit-food-delivery.onrender.com/api/admin/foods"
+        );
 
         const featuredFoods = data.filter((curData) => {
           return curData.featured.toLowerCase() === "on";
@@ -20,12 +22,12 @@ const HFood = () => {
 
         setFoods(featuredFoods);
       } catch (error) {
-        console.log(error);
+        console.log("Food Error:", error.response?.data || error.message);
       }
     };
 
     fetchFoods();
-  }, []); // ✅ FIXED
+  }, []);
 
   const { addItem } = useCart();
 
@@ -58,7 +60,7 @@ const HFood = () => {
                   <Link to={"/foods/" + item._id}>
                     <img
                       src={
-                        "https://mfd-mohit-food-delivery.onrender.com/uploads/foods/" +
+                        "https://mfd-mohit-food-delivery.onrender.com/foods/" +
                         item.thumb
                       }
                       alt={item.title}
