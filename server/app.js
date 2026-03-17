@@ -24,9 +24,12 @@ const app = express();
 
 // CORS FIX
 app.use(cors({
-  origin: "*"
+  origin: [
+    "https://mfd-mohit-food-delivery-1.onrender.com"
+  ],
+  credentials: true
 }));
-
+app.options("*", cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 

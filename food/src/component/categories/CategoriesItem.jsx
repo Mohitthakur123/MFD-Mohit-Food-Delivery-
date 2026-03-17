@@ -1,26 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import { useState, useEffect } from "react";
+import api from "../../api";
 import ReactPaginate from "react-paginate";
 
 const CategoriesItem = () => {
-  // GET CATEGORIES
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    const fatchCategories = async () => {
+    const fetchCategories = async () => {
       try {
-        const { data } = await axios.get(
-          "https://mfd-mohit-food-delivery.onrender.com/api/admin/categories"
-        );
-        console.log("Categories:", data);
+        const { data } = await api.get("/api/admin/categories");
         setCategories(data);
       } catch (error) {
         console.log("Category Error:", error.response?.data || error.message);
       }
     };
-    fatchCategories();
+    fetchCategories();
   }, []);
 
   // Pagination
@@ -34,11 +29,7 @@ const CategoriesItem = () => {
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % categories.length;
     setItemOffset(newOffset);
-    document.documentElement.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -53,7 +44,10 @@ const CategoriesItem = () => {
                 <div className="box-3 float-container">
                   <div className="category-thumb text-center">
                     <img
-                      src={`https://mfd-mohit-food-delivery.onrender.com/categories/${item.thumb}`}
+                      src={`https://mfd-mohit-food-delivery.onrender.com/categories/${item.thumb?.replace(
+                        "uploads/categories/",
+                        ""
+                      )}`}
                       alt={item.title}
                       className="img-responsive img-curve"
                     />
@@ -77,7 +71,6 @@ const CategoriesItem = () => {
           pageRangeDisplayed={3}
           pageCount={pageCount}
           previousLabel="<<"
-          renderOnZeroPageCount={null}
           containerClassName="pagination"
         />
       )}
