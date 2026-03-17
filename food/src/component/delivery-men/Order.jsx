@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import PageHeader from "../common/header/title/PageHeader";
 import "../customer/customer.css";
-import axios from "axios";
+import api from "../../api";
 import moment from "moment";
 import Profile from "./Profile";
 
@@ -16,7 +16,7 @@ const Order = () => {
   const [items, setitems] = useState([]);
   useEffect(() => {
     const fatchOrder = async () => {
-      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/orders/${id}`);
+      const { data } = await api.get(`/api/admin/orders/${id}`);
       setOrder(data);
       setitems(data.items);
     };

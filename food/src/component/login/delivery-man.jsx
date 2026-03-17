@@ -3,7 +3,7 @@ import { useState } from "react";
 import PageHeader from "../common/header/title/PageHeader";
 import "./login.css";
 import Swal from "sweetalert2";
-import axios from "axios";
+import api from "../../api";
 import Cookies from "js-cookie";
 
 const DeliveryMan = () => {
@@ -16,8 +16,8 @@ const DeliveryMan = () => {
       email,
       password,
     };
-    axios
-      .post(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/manlogin`, data, {
+    api
+      .post(`/api/admin/manlogin`, data, {
         headers: {
           "Content-Type": "application/json",
         },

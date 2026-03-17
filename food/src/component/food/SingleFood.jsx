@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import PageHeader from "../common/header/title/PageHeader";
 import "./food.css";
 import { Link, useParams } from "react-router-dom";
-import axios from "axios";
+import api from "../../api";
 import { useCart } from "react-use-cart";
 import Swal from "sweetalert2";
 import Rating from "../common/rating/Rating";
@@ -16,7 +16,7 @@ const SingleFood = () => {
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
     const fatchFood = async () => {
-      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/foods/${id}`);
+      const { data } = await api.get(`/api/admin/foods/${id}`);
       setFood(data);
       setReviews(data.reviews.reverse());
     };
@@ -45,7 +45,7 @@ const SingleFood = () => {
   const [recomFoods, setRecomFoods] = useState([]);
   useEffect(() => {
     const fatchRecomFood = async () => {
-      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/foods/recommended`);
+      const { data } = await api.get(`/api/admin/foods/recommended`);
       setRecomFoods(data);
     };
     fatchRecomFood();

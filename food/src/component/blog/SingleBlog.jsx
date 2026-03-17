@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PageHeader from "../common/header/title/PageHeader";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import api from "../../api";
 import moment from "moment";
 
 const SingleBlog = () => {
@@ -9,7 +9,7 @@ const SingleBlog = () => {
   const [blog, setBlog] = useState({});
   useEffect(() => {
     const fatchBlog = async () => {
-      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/blogs/${id}`);
+      const { data } = await api.get(`/api/admin/blogs/${id}`);
       setBlog(data);
     };
     fatchBlog();

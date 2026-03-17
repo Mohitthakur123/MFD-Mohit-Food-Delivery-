@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../customer/customer.css";
 import PageHeader from "../common/header/title/PageHeader";
 import Cookies from "js-cookie";
-import axios from "axios";
+import api from "../../api";
 import Swal from "sweetalert2";
 import Profile from "./Profile";
 
@@ -17,7 +17,7 @@ const ChangePassword = () => {
   const id = Cookies.get("delivery-man");
   useEffect(() => {
     const fatchDeliveryMan = async () => {
-      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/delivery-men/${id}`);
+      const { data } = await api.get(`/api/admin/delivery-men/${id}`);
       setThumb(data.thumb);
       setEmail(data.email);
     };
@@ -33,9 +33,9 @@ const ChangePassword = () => {
         email,
         thumb: currentThumb,
       };
-      axios
+      api
         .put(
-          `https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/delivery-men/${id}?cthumb=${currentThumb}`,
+          `/api/admin/delivery-men/${id}?cthumb=${currentThumb}`,
           updateData,
           {
             headers: {

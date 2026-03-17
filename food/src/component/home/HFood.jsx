@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../../api";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Title from "../common/header/title/Title";
@@ -12,9 +12,7 @@ const HFood = () => {
   useEffect(() => {
     const fetchFoods = async () => {
       try {
-        const { data } = await axios.get(
-          "https://mfd-mohit-food-delivery.onrender.com/api/admin/foods"
-        );
+        const { data } = await api.get("/api/admin/foods");
 
         const featuredFoods = data.filter((curData) => {
           return curData.featured.toLowerCase() === "on";

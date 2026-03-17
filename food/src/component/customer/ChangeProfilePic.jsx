@@ -2,7 +2,7 @@ import Cookies from "js-cookie";
 import React from "react";
 import PageHeader from "../common/header/title/PageHeader";
 import "./customer.css";
-import axios from "axios";
+import api  from "../../api";
 import Swal from "sweetalert2";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -15,7 +15,7 @@ const ProfilePicChange = () => {
   const id = Cookies.get("customer");
   useEffect(() => {
     const fatchCustomer = async () => {
-      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/customers/${id}`);
+      const { data } = await api.get(`/api/admin/customers/${id}`);
       setThumb(data.thumb);
     };
     fatchCustomer();
@@ -26,8 +26,8 @@ const ProfilePicChange = () => {
     let updateData = {
       thumb: document.querySelector("#thumb").files[0],
     };
-    axios
-      .put(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/customers/${id}?cthumb=${currentThumb}`, updateData, {
+    api
+      .put(`/api/admin/customers/${id}?cthumb=${currentThumb}`, updateData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

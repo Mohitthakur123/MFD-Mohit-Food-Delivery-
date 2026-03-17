@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Title from "../common/header/title/Title";
-import axios from "axios";
+import api from "../../api";
 import moment from "moment";
 
 const HBlog = () => {
@@ -9,7 +9,7 @@ const HBlog = () => {
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
     const fatchBlogs = async () => {
-      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/blogs`);
+      const { data } = await api.get(`/api/admin/blogs`);
       const featuredBlogs = data.filter((curData) => {
         return curData.featured.toLowerCase() === "on";
       });

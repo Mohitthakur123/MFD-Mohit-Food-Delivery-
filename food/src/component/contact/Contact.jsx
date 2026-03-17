@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import api from "../../api";
 import Swal from "sweetalert2";
 import PageHeader from "../common/header/title/PageHeader";
 import "./contact.css";
@@ -22,8 +22,8 @@ const Contact = () => {
       phone,
       message,
     };
-    axios
-      .post(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/messages`, data, {
+    api
+      .post("/api/admin/messages", data, {
         headers: {
           "Content-Type": "application/json",
         },

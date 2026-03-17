@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./footer.css";
-import axios from "axios";
+import api from '../../../api';
 import moment from "moment";
 
 const Footer = () => {
@@ -21,7 +21,7 @@ const Footer = () => {
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
     const fatchBlogs = async () => {
-      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/blogs`);
+      const { data } = await api.get("/api/admin/blogs");
       setBlogs(data);
     };
     fatchBlogs();

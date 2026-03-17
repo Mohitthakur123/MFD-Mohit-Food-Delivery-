@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import PageHeader from "../common/header/title/PageHeader";
 import "./customer.css";
-import axios from "axios";
+import api from "../../api";
 import moment from "moment";
 import Swal from "sweetalert2";
 import Profile from "./Profile";
@@ -19,7 +19,7 @@ const Order = () => {
   const [deliveryManID, setDeliveryManID] = useState("");
   useEffect(() => {
     const fatchOrder = async () => {
-      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/orders/${id}`);
+      const { data } = await api.get(`/api/admin/orders/${id}`);
       setOrder(data);
       setitems(data.items);
       setDeliveryManID(data.delivery_man_id);
@@ -31,8 +31,8 @@ const Order = () => {
   const [deliveryMan, setDeliveryMan] = useState({});
   useEffect(() => {
     const fatchDeliveryMan = async () => {
-      const { data } = await axios.get(
-        `https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/delivery-men/${deliveryManID}`
+      const { data } = await api.get(
+        `/api/admin/delivery-men/${deliveryManID}`
       );
       setDeliveryMan(data);
     };
@@ -50,8 +50,8 @@ const Order = () => {
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios
-          .delete(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/orders/${id}`)
+        api
+          .delete(`/api/admin/orders/${id}`)
           .then((response) => {
             Swal.fire({
               icon: "success",
@@ -86,8 +86,8 @@ const Order = () => {
       customer_id,
       deliveryManID,
     };
-    axios
-      .post(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/delivery-men/${id}/review`, data, {
+    api
+      .post(`/api/admin/delivery-men/${id}/review`, data, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -103,8 +103,8 @@ const Order = () => {
           let updateData = {
             deliveryManReview: "Yes",
           };
-          axios
-            .put(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/orders/${id}`, updateData, {
+          api
+            .put(`/api/admin/orders/${id}`, updateData, {
               headers: {
                 "Content-Type": "application/json",
               },
@@ -157,8 +157,8 @@ const Order = () => {
             comment: formValues[1],
             customer_id,
           };
-          axios
-            .post(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/foods/${foodID}/review`, data, {
+          api
+            .post(`/api/admin/foods/${foodID}/review`, data, {
               headers: {
                 "Content-Type": "application/json",
               },
@@ -174,7 +174,7 @@ const Order = () => {
                 let foodData = {
                   food_id: foodID,
                 };
-                axios.put(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/orders/${id}/review/`, foodData, {
+                api.put(`/api/admin/orders/${id}/review/`, foodData, {
                   headers: {
                     "Content-Type": "application/json",
                   },
@@ -219,8 +219,8 @@ const Order = () => {
         let updateData = {
           status: "Delivered",
         };
-        axios
-          .put(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/orders/${id}`, updateData, {
+        api
+          .put(`/api/admin/orders/${id}`, updateData, {
             headers: {
               "Content-Type": "application/json",
             },
@@ -231,9 +231,9 @@ const Order = () => {
               completeOrders: deliveryMan.completeOrders + 1,
               thumb: deliveryMan.thumb,
             };
-            axios
+            api
               .put(
-                `https://mfd-mohit-food-delivery-admin.onrender.com/delivery-men/${deliveryManID}?cthumb=${deliveryMan.thumb}`,
+                `api/delivery-men/${deliveryManID}?cthumb=${deliveryMan.thumb}`,
                 updateManData,
                 {
                   headers: {

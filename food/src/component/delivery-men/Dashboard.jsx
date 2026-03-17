@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import PageHeader from "../common/header/title/PageHeader";
 import "../customer/customer.css";
-import axios from "axios";
+import api from "../../api";
 import moment from "moment";
 import Profile from "./Profile";
 import ReactPaginate from "react-paginate";
@@ -16,7 +16,7 @@ const Dashboard = () => {
   const delivery_man_id = Cookies.get("delivery-man");
   useEffect(() => {
     const fatchOrders = async () => {
-      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/orders`);
+      const { data } = await api.get(`/api/admin/orders`);
       const fatchDeliveryManOrders = data.filter((curData) => {
         return curData.delivery_man_id === delivery_man_id;
       });

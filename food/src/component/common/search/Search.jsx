@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../../../api";
 import React, { useEffect, useState } from "react";
 import FoodItem from "../../food/FoodItem";
 import Title from "../header/title/Title";
@@ -10,7 +10,7 @@ const Search = () => {
   const [foods, setFoods] = useState([]);
   useEffect(() => {
     const fatchFoods = async () => {
-      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/foods?q=${query}`);
+      const { data } = await api.get(`/api/admin/foods?q=${query}`);
       setFoods(data);
     };
     fatchFoods();

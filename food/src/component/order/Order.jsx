@@ -5,7 +5,7 @@ import "./order.css";
 import { useCart } from "react-use-cart";
 import Swal from "sweetalert2";
 import Cookies from "js-cookie";
-import axios from "axios";
+import api from "../../api";
 import { v4 as uuid } from "uuid";
 
 function Order() {
@@ -59,7 +59,7 @@ function Order() {
   const id = Cookies.get("customer");
   useEffect(() => {
     const fatchCustomer = async () => {
-      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/customers/${id}`);
+      const { data } = await api.get(`/api/admin/customers/${id}`);
       setPhone(data.phone);
       setEmail(data.email);
       setAddress(data.address);
@@ -86,8 +86,8 @@ function Order() {
           deliveryCost: deliveryCost,
           total_price: cartTotal + deliveryCost,
         };
-        axios
-          .post(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/orders`, data, {
+        api
+          .post(`/api/admin/orders`, data, {
             headers: {
               "Content-Type": "application/json",
             },

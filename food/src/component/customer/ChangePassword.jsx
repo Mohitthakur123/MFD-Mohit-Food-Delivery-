@@ -4,7 +4,7 @@ import PageHeader from "../common/header/title/PageHeader";
 import Cookies from "js-cookie";
 import { useState } from "react";
 import Swal from "sweetalert2";
-import axios from "axios";
+import api from "../../api";
 import { useEffect } from "react";
 import Profile from "./Profile";
 
@@ -19,7 +19,7 @@ const ChangePassword = () => {
   const id = Cookies.get("customer");
   useEffect(() => {
     const fatchCustomer = async () => {
-      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/customers/${id}`);
+      const { data } = await api.get(`/api/admin/customers/${id}`);
       setThumb(data.thumb);
       setEmail(data.email);
     };
@@ -35,8 +35,8 @@ const ChangePassword = () => {
         email,
         thumb: currentThumb,
       };
-      axios
-        .put(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/customers/${id}?cthumb=${currentThumb}`, updateData, {
+      api
+        .put(`/api/admin/customers/${id}?cthumb=${currentThumb}`, updateData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

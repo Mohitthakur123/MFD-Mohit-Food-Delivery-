@@ -4,7 +4,7 @@ import ShoppingCart from "./ShoppingCart";
 import { useCart } from "react-use-cart";
 import Cookies from "js-cookie";
 import { useRef, useState, useEffect } from "react";
-import axios from "axios";
+import api from "../../../api"; 
 
 const BASE_URL = "https://mfd-mohit-food-delivery.onrender.com";
 
@@ -75,7 +75,7 @@ const Header = () => {
 
     const fetchCustomer = async () => {
       try {
-        const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/customers/${customer_id}`);
+        const { data } = await api.get(`/api/admin/customers/${customer_id}`);
         setCustomer(data);
       } catch (error) {
         console.log(error);
@@ -94,7 +94,7 @@ const Header = () => {
 
     const fetchDeliveryMan = async () => {
       try {
-        const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/delivery-men/${deliveryMan_id}`);
+        const { data } = await api.get(`/api/admin/delivery-men/${deliveryMan_id}`);
         setDeliveryMan(data);
       } catch (error) {
         console.log(error);

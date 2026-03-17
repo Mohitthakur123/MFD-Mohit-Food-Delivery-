@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import PageHeader from "../common/header/title/PageHeader";
 import "./customer.css";
-import axios from "axios";
+import api from "../../api";
 import moment from "moment";
 import Swal from "sweetalert2";
 import Profile from "./Profile";
@@ -17,7 +17,7 @@ const Dashboard = () => {
   const customer_id = Cookies.get("customer");
   useEffect(() => {
     const fatchOrders = async () => {
-      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/orders`);
+      const { data } = await api.get(`/api/admin/orders`);
       const fatchCustomerOrders = data.filter((curData) => {
         return curData.customer_id === customer_id;
       });
@@ -55,7 +55,7 @@ const Dashboard = () => {
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/orders/${id}`).catch((error) => {
+        api.delete(`/api/admin/orders/${id}`).catch((error) => {
           Swal.fire({
             icon: "error",
             title: "Oops...",
@@ -75,9 +75,9 @@ const Dashboard = () => {
   //const updateDeliveryManDetails = (deliveryManID) => {
   // GET DELIVERY MAN DETAILS
   // const fatchDeliveryMan = async () => {
-  //   const { data } = await axios.get(
+  //   const { data } = await api.get(
   //     process.env.REACT_APP_SERVER +
-  //       `https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/delivery-men/${deliveryManID}`
+  //       `/api/admin/delivery-men/${deliveryManID}`
   //   );
   //   setDeliveryMan(data);
   //   setPendingOrders(data.pendingOrders);
@@ -98,10 +98,10 @@ const Dashboard = () => {
   //   text: pendingOrders + "/" + completeOrders + "/" + currentThumb,
   //   text: deliveryManID,
   // });
-  // axios
+  // api
   //   .put(
   //     process.env.REACT_APP_SERVER +
-  //       `https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/delivery-men/${deliveryManID}?cthumb=${deliveryMan.thumb}`,
+  //       `/api/admin/delivery-men/${deliveryManID}?cthumb=${deliveryMan.thumb}`,
   //     updateManData,
   //     {
   //       headers: {
@@ -132,8 +132,8 @@ const Dashboard = () => {
         let updateData = {
           status: "Delivered",
         };
-        axios
-          .put(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/orders/${id}`, updateData, {
+        api
+          .put(`/api/admin/orders/${id}`, updateData, {
             headers: {
               "Content-Type": "application/json",
             },
@@ -151,10 +151,10 @@ const Dashboard = () => {
             //   title: "Oops...",
             //   text: pendingOrders + "/" + completeOrders + "/" + currentThumb,
             // });
-            // axios
+            // api
             //   .put(
             //     process.env.REACT_APP_SERVER +
-            //       `https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/delivery-men/${deliveryManID}?cthumb=${deliveryMan.thumb}`,
+            //       `/api/admin/delivery-men/${deliveryManID}?cthumb=${deliveryMan.thumb}`,
             //     updateManData,
             //     {
             //       headers: {

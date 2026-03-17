@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../../api";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import PageHeader from "../common/header/title/PageHeader";
@@ -14,7 +14,7 @@ const CategoryFood = () => {
   const [foods, setFoods] = useState([]);
   useEffect(() => {
     const fatchFoods = async () => {
-      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/foods`);
+      const { data } = await api.get(`/api/admin/foods`);
       const categoryFoods = data.filter((curData) => {
         return curData.category.toLowerCase() === title.toLowerCase();
       });

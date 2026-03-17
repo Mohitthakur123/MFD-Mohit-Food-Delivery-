@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../../api";
 import Cookies from "js-cookie";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
@@ -11,7 +11,7 @@ const Profile = () => {
   const [deliveryMan, setDeliveryMan] = useState({});
   useEffect(() => {
     const fatchDeliveryMan = async () => {
-      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/delivery-men/${id}`);
+      const { data } = await api.get(`/api/admin/delivery-men/${id}`);
       setDeliveryMan(data);
     };
     fatchDeliveryMan();

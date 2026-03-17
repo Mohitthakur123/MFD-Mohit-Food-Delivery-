@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import PageHeader from "../common/header/title/PageHeader";
 import "../customer/customer.css";
-import axios from "axios";
+import api from "../../api";
 import moment from "moment";
 import Profile from "./Profile";
 import Rating from "../common/rating/Rating";
@@ -17,7 +17,7 @@ const Reviews = () => {
   const [deliveryManReviews, setDeliveryManReviews] = useState([]);
   useEffect(() => {
     const fatchDeliveryMan = async () => {
-      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/delivery-men/${id}`);
+      const { data } = await api.get(`/api/admin/delivery-men/${id}`);
       setDeliveryMan(data);
       setDeliveryManReviews(data.reviews);
     };
