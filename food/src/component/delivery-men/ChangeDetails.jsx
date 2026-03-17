@@ -14,31 +14,46 @@ const ChangeDetails = () => {
 
   // GET DELIVERY MAN DETAILS
   const id = Cookies.get("delivery-man");
+
   useEffect(() => {
-    const fatchDeliveryMan = async () => {/api/admin/delivery
-      const { data } = await axios.get(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/delivery-men/${id}`);
-      setName(data.name);
-      setPhone(data.phone);
-      setAddress(data.address);
-      setThumb(data.thumb);
+    const fatchDeliveryMan = async () => {
+      try {
+        const { data } = await axios.get(
+          `https://mfd-mohit-food-delivery.onrender.com/api/admin/delivery-men/${id}`
+        );
+
+        setName(data.name);
+        setPhone(data.phone);
+        setAddress(data.address);
+        setThumb(data.thumb);
+      } catch (error) {
+        console.log("Error:", error.response?.data || error.message);
+      }
     };
+
     fatchDeliveryMan();
   }, [id]);
 
   const submitHandler = (e) => {
     e.preventDefault();
+
     let updateData = {
       name,
       phone,
       address,
       thumb: currentThumb,
     };
+
     axios
-      .put(`https://mfd-mohit-food-delivery-admin.onrender.com/api/admin/delivery-men/${id}?cthumb=${currentThumb}`, updateData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
+      .put(
+        `https://mfd-mohit-food-delivery.onrender.com/api/admin/delivery-men/${id}?cthumb=${currentThumb}`,
+        updateData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
       .then((response) => {
         Swal.fire({
           icon: "success",
@@ -46,13 +61,14 @@ const ChangeDetails = () => {
           showConfirmButton: false,
           timer: 1000,
         });
+
         window.location.href = "/delivery-man/dashboard";
       })
       .catch((error) => {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Update field!",
+          text: "Update failed!",
         });
       });
   };
@@ -63,26 +79,31 @@ const ChangeDetails = () => {
     return (
       <>
         <PageHeader title="Change Details" />
+
         <section className="dashboard">
           <div className="container padding">
             <Profile />
+
             <div className="dashboard-content">
-              <form enctype="multipart/form-data" onSubmit={submitHandler}>
+              <form onSubmit={submitHandler}>
                 <input
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
+
                 <input
                   type="tel"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
+
                 <input
                   type="text"
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
                 />
+
                 <button className="btn-primary">Update</button>
               </form>
             </div>
